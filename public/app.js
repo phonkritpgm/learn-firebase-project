@@ -2,6 +2,8 @@
     import { getFirestore, doc, collection, getDocs, addDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-firestore.js";
     // import { getDatabase } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js";
 
+    import { getAuth, createUserWithEmailAndPassword, onAuthStateChanged, signOut, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-auth.js";
+
     import { add } from "./moduleJS/math.js";
 
     // TODO: Add SDKs for Firebase products that you want to use
@@ -22,6 +24,7 @@
 
     // Initialize Firebase
     const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
     //const analytics = getAnalytics(app);
     const db = getFirestore(app);
 
@@ -68,7 +71,7 @@
 
             e.preventDefault();
             const docId = btn.getAttribute("data-id");
-            
+
             const docRef = doc(db, "users", docId);
 
             deleteDoc(docRef)
@@ -155,4 +158,94 @@
         delRowCell();
     }
 
-    btnDelRow.onclick = delBtnClick;
+    // btnDelRow.onclick = delBtnClick;
+
+    // Authentication email and login email firebase user authentication
+    const frmAuthEmail = document.getElementById('authEmail');
+    const frmAuthLogin = document.getElementById('authLogin');
+
+    const divAuthEmailArea = document.getElementById('frm-register-area');
+    const divAuthLoginArea = document.getElementById('frm-login-area');
+
+    const btnRegister = document.getElementById('btn-register');
+    const divDisplayLogin = document.getElementById('display-login');
+    const pDisplayLogin = document.getElementById('display-text-login');
+
+    const btnSignout = document.getElementById('btn-signout');
+
+    frmAuthEmail.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const email = frmAuthEmail.email.value;
+        const password = frmAuthEmail.password.value;
+
+        createUserWithEmailAndPassword(auth, email, password)
+        .then((result) => {
+            alert("success create account.");
+        }).catch((error) => {
+            alert(error.message);
+        })
+
+    })
+
+    frmAuthLogin.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const email = frmAuthLogin.email.value;
+        const password = frmAuthLogin.password.value;
+
+        signInWithEmailAndPassword(auth, email, password)
+        .then((result) => {
+            alert("Login success.");
+        }).catch((error) => {
+            alert(error.message);
+        })
+        
+    })
+
+    btnRegister.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (divAuthEmailArea.style.display === "none")
+        {
+            divAuthEmailArea.style.display = "block";
+        }
+        else
+        {
+            divAuthEmailArea.style.display = "none";
+        }
+        
+    })
+    
+    onAuthStateChanged(auth, (user) => {
+        // login
+        if(user != undefined)
+        {
+
+            frmAuthLogin.style.display = "none";
+
+            divAuthEmailArea.style.display = "none";
+            divAuthLoginArea.style.display = "block";
+            
+            divDisplayLogin.style.display = "block";
+            pDisplayLogin.innerText =  `Login : ${user.email}`;
+
+        }
+        else
+        {
+            frmAuthLogin.style.display = "block";
+
+            divAuthEmailArea.style.display = "none";
+            divAuthLoginArea.style.display = "block";
+
+            divDisplayLogin.style.display = "none";
+            pDisplayLogin.innerText = "";
+        }
+    })
+
+
+    // Sign Out
+    btnSignout.addEventListener('click', (e) => {
+        signOut(auth).then(()=>{
+            alert("SignOut success.");
+        }).catch((error) => {
+            alert(error.message);
+        })
+    })

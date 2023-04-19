@@ -73,11 +73,65 @@
     margin: 2px;
   }
 
+  .box-parent{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+  }
+
+  /* @media only screen and (min-width: 800px) {
+    body {
+      background-color: lightblue;
+    }
+
+    .box-parent{
+      justify-content: space-between;
+    }
+  } */
+
 </style>
 
 <body>
 
-  <nav class="navbar-n">
+  <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
+    <div class="container-fluid">
+      <a style="font-size: 25px; font-weight: 700;" class="navbar-brand" href="#">Learn Firebase</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarScroll">
+        <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Link</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Link
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+              <li><a class="dropdown-item" href="#">Action</a></li>
+              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Link</a>
+          </li>
+        </ul>
+        <form class="d-flex">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+      </div>
+    </div>
+  </nav>
+
+  <!-- <nav class="navbar-n">
     <div class="logo"><h4>Welcome</h4></div>
 
     <div class="mn">
@@ -92,50 +146,108 @@
     <div class="user-info">
       <img src="" alt="">
     </div>
-  </nav>
+  </nav> -->
 
-  <!-- from group -->
-  <div style="position: relative;
-              width: 100%;
-              display: flex;
-              align-content: center;
-              justify-content: center;
-              padding: 10px;
-              ">
-
-                <!-- display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                text-align: center;
-                min-height: 100vh;
-                background-color: red; 
-                margin: -150px 0 0 -150px;-->
+  <!-- container box register -->
+  <div class="box-parent">
+              
+    <!-- from group Register users -->
     <div style="position: relative;            
                 box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px;
                 border-radius: 10px;
                 padding: 20px;
-               ">
+                margin: 20px;
+              ">
 
-      <h2 style="text-align: center;">Register</h2>
+      <h2 style="text-align: center;">Add Users</h2>
       <hr>
-    
+
       <form style="width: 300px;" id="addForm" method="post">
         <div class="form-group">
-            <label for="name">ชื่อ</label>
-            <input type="text" name="name" class="form-control" placeholder="Your name . . .">
+          <label for="name">ชื่อ</label>
+          <input type="text" name="name" class="form-control" placeholder="Your name . . .">
         </div>
-    
+
         <div class="form-group">
-            <label for="email">Email</label>
-            <input type="text" name="email" class="form-control" placeholder="Email . . .">
+          <label for="email">Email</label>
+          <input type="text" name="email" class="form-control" placeholder="Email . . .">
         </div>
-    
+
         <div class="form-group" style="margin-top: 10px;">
-            <input type="submit" class="btn btn-primary" value="Submit">
+          <input type="submit" class="btn btn-primary" value="Submit">
         </div>
       </form>
-    
+
+    </div>
+
+    <!-- Register email -->
+    <!-- from group Register users -->
+
+    <div style="position: relative;            
+                box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px;
+                border-radius: 10px;
+                padding: 20px;
+                margin: 20px;
+                display: none;
+              " id="frm-register-area">
+
+      <h2 style="text-align: center;">Authentication Register Email</h2>
+      <hr>
+
+      <form style="width: 300px;" id="authEmail" action="" method="">
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="text" name="email" class="form-control" placeholder="Your email . . .">
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="text" name="password" class="form-control" placeholder="Password . . .">
+        </div>
+
+        <div class="form-group" style="margin-top: 10px;">
+          <input type="submit" class="btn btn-primary" value="Submit">
+        </div>
+      </form>
+
+    </div>
+
+    <!-- Login email -->
+    <!-- from group Register users -->
+    <div style="position: relative;            
+                box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px;
+                border-radius: 10px;
+                padding: 20px;
+                margin: 20px;
+              " id="frm-login-area">
+
+      <h2 id="header-login" style="text-align: center;">Authentication login</h2>
+      <hr>
+
+      <div id="display-login" style="display: none; text-align: center;">
+        <p id="display-text-login" style="font-size: 30px;"></p>
+        <hr>
+        <input id="btn-signout" type="button" class="btn btn-danger" value="SignOut">
+      </div>
+      
+      <form style="width: 300px; display: none;" id="authLogin" action="" method="">
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="text" name="email" class="form-control" placeholder="Your email . . .">
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="text" name="password" class="form-control" placeholder="Password . . .">
+        </div>
+
+        <div class="form-group" style="margin-top: 10px; display: flex; justify-content: space-around;">
+          <input type="submit" class="btn btn-success" value="Submit">
+          <input id="btn-register" type="button" class="btn btn-info" value="register">
+        </div>
+
+      </form>
+
     </div>
 
   </div>
@@ -168,50 +280,50 @@
             <span class="fs-5">Bootstrap</span>
           </a>
           <ul class="list-unstyled small text-muted">
-            <li class="mb-2">Designed and built with all the love in the world by the <a href="/docs/5.0/about/team/">Bootstrap team</a> with the help of <a href="https://github.com/twbs/bootstrap/graphs/contributors">our contributors</a>.</li>
+            <!-- <li class="mb-2">Designed and built with all the love in the world by the <a href="/docs/5.0/about/team/">Bootstrap team</a> with the help of <a href="https://github.com/twbs/bootstrap/graphs/contributors">our contributors</a>.</li>
             <li class="mb-2">Code licensed <a href="https://github.com/twbs/bootstrap/blob/main/LICENSE" target="_blank" rel="license noopener">MIT</a>, docs <a href="https://creativecommons.org/licenses/by/3.0/" target="_blank" rel="license noopener">CC BY 3.0</a>.</li>
             <li class="mb-2">Currently v5.0.2.</li>
-            <li class="mb-2">Analytics by <a href="https://usefathom.com/ref/ADZSBE" target="_blank" rel="noopener">Fathom</a>.</li>
+            <li class="mb-2">Analytics by <a href="https://usefathom.com/ref/ADZSBE" target="_blank" rel="noopener">Fathom</a>.</li> -->
           </ul>
         </div>
         <div class="col-6 col-lg-2 offset-lg-1 mb-3">
           <h5>Links</h5>
           <ul class="list-unstyled">
-            <li class="mb-2"><a href="/">Home</a></li>
+            <!-- <li class="mb-2"><a href="/">Home</a></li>
             <li class="mb-2"><a href="/docs/5.0/">Docs</a></li>
             <li class="mb-2"><a href="/docs/5.0/examples/">Examples</a></li>
             <li class="mb-2"><a href="https://themes.getbootstrap.com/">Themes</a></li>
             <li class="mb-2"><a href="https://blog.getbootstrap.com/">Blog</a></li>
-            <li class="mb-2"><a href="https://cottonbureau.com/people/bootstrap">Swag Store</a></li>
+            <li class="mb-2"><a href="https://cottonbureau.com/people/bootstrap">Swag Store</a></li> -->
           </ul>
         </div>
         <div class="col-6 col-lg-2 mb-3">
           <h5>Guides</h5>
           <ul class="list-unstyled">
-            <li class="mb-2"><a href="/docs/5.0/getting-started/">Getting started</a></li>
+            <!-- <li class="mb-2"><a href="/docs/5.0/getting-started/">Getting started</a></li>
             <li class="mb-2"><a href="/docs/5.0/examples/starter-template/">Starter template</a></li>
             <li class="mb-2"><a href="/docs/5.0/getting-started/webpack/">Webpack</a></li>
-            <li class="mb-2"><a href="/docs/5.0/getting-started/parcel/">Parcel</a></li>
+            <li class="mb-2"><a href="/docs/5.0/getting-started/parcel/">Parcel</a></li> -->
           </ul>
         </div>
         <div class="col-6 col-lg-2 mb-3">
           <h5>Projects</h5>
           <ul class="list-unstyled">
-            <li class="mb-2"><a href="https://github.com/twbs/bootstrap">Bootstrap 5</a></li>
+            <!-- <li class="mb-2"><a href="https://github.com/twbs/bootstrap">Bootstrap 5</a></li>
             <li class="mb-2"><a href="https://github.com/twbs/bootstrap/tree/v4-dev">Bootstrap 4</a></li>
             <li class="mb-2"><a href="https://github.com/twbs/icons">Icons</a></li>
             <li class="mb-2"><a href="https://github.com/twbs/rfs">RFS</a></li>
-            <li class="mb-2"><a href="https://github.com/twbs/bootstrap-npm-starter">npm starter</a></li>
+            <li class="mb-2"><a href="https://github.com/twbs/bootstrap-npm-starter">npm starter</a></li> -->
           </ul>
         </div>
         <div class="col-6 col-lg-2 mb-3">
           <h5>Community</h5>
           <ul class="list-unstyled">
-            <li class="mb-2"><a href="https://github.com/twbs/bootstrap/issues">Issues</a></li>
+            <!-- <li class="mb-2"><a href="https://github.com/twbs/bootstrap/issues">Issues</a></li>
             <li class="mb-2"><a href="https://github.com/twbs/bootstrap/discussions">Discussions</a></li>
             <li class="mb-2"><a href="https://github.com/sponsors/twbs">Corporate sponsors</a></li>
             <li class="mb-2"><a href="https://opencollective.com/bootstrap">Open Collective</a></li>
-            <li class="mb-2"><a href="https://stackoverflow.com/questions/tagged/bootstrap-5">Stack Overflow</a></li>
+            <li class="mb-2"><a href="https://stackoverflow.com/questions/tagged/bootstrap-5">Stack Overflow</a></li> -->
           </ul>
         </div>
       </div>
